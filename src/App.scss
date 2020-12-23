@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+.tuva-editor-toolbar {
+  ul {
+    display:flex;
+    justify-content:center;
+    flex-direction:row;
+  }
+}
