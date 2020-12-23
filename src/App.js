@@ -16,12 +16,19 @@ class App extends Component {
 
   }
 
-  tuvaEditor = (src) => {
+  tuvaEditor = (text) => {
     let paragraph_rejax = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
-    src = '\n' + src + '\n'; // to check end of line
-    src = src.replace(paragraph_rejax, function(all, content) { return `<p>${content}<p>` });
-    return src.trim();
+    text = '\n' + text + '\n'; // to check end of line
+    text = text.replace(paragraph_rejax, function (all, content) { return `<p>${content}<p>` });
+    text = this.isbold(text)
+    return text.trim();
   };
+
+  isbold = (text) => {
+    var bold = /\*\*(.*?)\*\*/gm;
+    var html = text.replace(bold, '<strong>$1</strong>');
+    return html;
+  }
 
   render() {
     return (
