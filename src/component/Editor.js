@@ -1,12 +1,11 @@
 import { Component } from 'react';
-
 export default class Editor extends Component {
-  
+
   render() {
     const { onEditorChange } = this.props;
     return (
-      <div>
-        <textarea onChange={(e) => onEditorChange(e)} rows='10'></textarea>
+      <div className='tuva-editor-container'>
+        <div className='tuva-editor' contentEditable='true' onInput={(e) => onEditorChange(e)}></div>
       </div>
     )
   }
