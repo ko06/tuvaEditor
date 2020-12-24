@@ -1,5 +1,11 @@
+// variable
+$primary-border: #eee;
+$sm-padding: 15px;
+$lg-padding: 20px;
+
 .App {
   text-align: center;
+  padding: $sm-padding;
 }
 
 .tuva-editor-toolbar {
@@ -8,11 +14,17 @@
   ol,
   li {
     list-style: none;
+
+    button {
+      padding: 10px;
+      border-color: $primary-border;
+      box-shadow: 2px 2px 3px $primary-border;
+    }
   }
 
   ul {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     margin: 0;
     padding: 0;
@@ -21,7 +33,7 @@
 
 .tuva-container {
   display: flex;
-  align-items: center;
+  align-items: normal;
   justify-content: center;
 }
 
@@ -30,21 +42,36 @@
   justify-content: flex-end;
   flex-direction: column;
   align-items: end;
-
 }
+
+// .tuva-editor-toolbar, .tuva-container{
+//   margin: 0 10%;
+// }
 
 .tuva-editor,
 .preview {
-  min-height: calc(100vh - 83px);
-  padding: 20px;
-  border: 2px solid #eee;
-  width: 500px;
+  padding: $lg-padding;
+  border: 2px solid $primary-border;
   text-align: left;
   word-break: break-all;
+  min-height: calc(100vh - 120px);
+}
+
+.preview,
+.tuva-editor-container {
+  width: calc(50% - #{$sm-padding});
+}
+
+.tuva-editor {
+  width: calc(100% - #{2 * $lg-padding});
+  &:focus {
+    outline: none;
+  }
 }
 
 .tuva-editor-toolbar {
-  padding: 5px 0;
+  padding: 0;
+  border: 1px solid $primary-border;
 
   button {
     &:hover {
