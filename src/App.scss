@@ -2,13 +2,14 @@
   text-align: center;
 }
 
-ul,
-ol,
-li {
-  list-style: none;
-}
-
 .tuva-editor-toolbar {
+
+  ul,
+  ol,
+  li {
+    list-style: none;
+  }
+
   ul {
     display: flex;
     justify-content: center;
@@ -39,6 +40,7 @@ li {
   border: 2px solid #eee;
   width: 500px;
   text-align: left;
+  word-break: break-all;
 }
 
 .tuva-editor-toolbar {
