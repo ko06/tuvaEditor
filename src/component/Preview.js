@@ -6,7 +6,7 @@ export default class Preview extends Component {
     const { htmlContent } = this.props;
     return (
       <div className={'preview'}>
-        <textarea value={htmlContent} rows='10'></textarea>
+        <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
       </div>
     )
   }

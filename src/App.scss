@@ -10,8 +10,61 @@ li {
 
 .tuva-editor-toolbar {
   ul {
-    display:flex;
-    justify-content:center;
-    flex-direction:row;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.tuva-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tuva-editor-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: end;
+
+}
+
+.tuva-editor,
+.preview {
+  min-height: calc(100vh - 83px);
+  padding: 20px;
+  border: 2px solid #eee;
+  width: 500px;
+  text-align: left;
+}
+
+.tuva-editor-toolbar {
+  padding: 5px 0;
+
+  button {
+    &:hover {
+      cursor: pointer;
+    }
+
+    svg {
+      height: 15px;
+      width: 15px;
+    }
+
+    &:active {
+      svg {
+        fill: red;
+      }
+    }
+  }
+}
+
+
+.preview {
+  p {
+    margin: 0;
   }
 }
