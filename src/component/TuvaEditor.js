@@ -29,34 +29,33 @@ class TuvaEditor extends Component {
 
   onKeyDown = (e) => {
     if (e.keyCode === 13) {
-     // prevent the default behaviour of return key pressed
-    //  document.execCommand('insertLineBreak')
-     e.preventDefault()
-     let docFragment = document.createDocumentFragment();
+      // prevent the default behaviour of return key pressed
+      e.preventDefault()
+      let docFragment = document.createDocumentFragment();
 
-    //add a new line
-    let newEle = document.createTextNode('\n');
-    docFragment.appendChild(newEle);
+      //add a new line
+      let newEle = document.createTextNode('\n');
+      docFragment.appendChild(newEle);
 
-    //add the br, or p, or something else
-    newEle = document.createElement('br');
-    docFragment.appendChild(newEle);
+      //add the br, or p, or something else
+      newEle = document.createElement('br');
+      docFragment.appendChild(newEle);
 
-    //make the br replace selection
-    let range = window.getSelection().getRangeAt(0);
-    range.deleteContents();
-    range.insertNode(docFragment);
+      //make the br replace selection
+      let range = window.getSelection().getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(docFragment);
 
-    //create a new range
-    range = document.createRange();
-    range.setStartAfter(newEle);
-    range.collapse(true);
+      //create a new range
+      range = document.createRange();
+      range.setStartAfter(newEle);
+      range.collapse(true);
 
-    //make the cursor there
-    let sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-    return false;
+      //make the cursor there
+      let sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      return false;
     }
   }
 

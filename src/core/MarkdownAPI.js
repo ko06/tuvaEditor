@@ -15,6 +15,10 @@ export function checkHRrule(src) {
   //.replace(/^([*\-=_] *){3,}$/gm, '<hr/>')
 }
 
+export function checkImage(src) {
+  return src.replace(/!\[(.*?)\]\((.*?)\)/gim, "<img alt='$1' src='$2' />")
+}
+
 export function checkBold(src) {
   return src.replace(/\*\*(.*?)\*\*/gi, '<strong>$1</strong>')
 }
