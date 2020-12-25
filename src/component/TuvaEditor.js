@@ -19,17 +19,17 @@ class TuvaEditor extends Component {
     }
   }
 
-  onEditorChange = (text) => {
+  onEditorChange = (e) => {
     this.setState({
-      editorText: text.target.innerHTML,
-      content: tuvaEditor(text.target.innerHTML, this.cb)
+      editorText: e.target.innerHTML,
+      content: tuvaEditor(e.target.innerHTML, this.cb)
     })
   }
 
   render() {
     return (
       <>
-        <Toolbar addtionalButton={this.addtionalButton}></Toolbar>
+        <Toolbar text={this.state.editorText} addtionalButton={this.addtionalButton}></Toolbar>
         <div className='tuva-container'>
           <Editor onEditorChange={this.onEditorChange} cb={this.cb}></Editor>
           <Preview htmlContent={this.state.content}></Preview>
