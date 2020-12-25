@@ -12,26 +12,59 @@ class TuvaEditor extends Component {
     this.addtionalButton = []
     if (config) {
       if (config.addtionalButton) {
-        this.addtionalButton = this.props.addtionalButton
-      } if(config['tuvaWillUpdate']){
-        this.cb=config['tuvaWillUpdate']
+        this.addtionalButton = config.addtionalButton
+      } if (config['tuvaWillUpdate']) {
+        this.cb = config['tuvaWillUpdate']
       }
     }
   }
 
-  onEditorChange = (text) => {
+  onEditorChange = (e) => {
     this.setState({
-      editorText: text.target.innerHTML,
-      content: tuvaEditor(text.target.innerHTML, this.cb)
+      editorText: e.target.innerHTML,
+      content: tuvaEditor(e.target.innerHTML, this.cb)
     })
+  }
+
+
+  onKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      // prevent the default behaviour of return key pressed
+      e.preventDefault()
+      let docFragment = document.createDocumentFragment();
+
+      //add a new line
+      let newEle = document.createTextNode('\n');
+      docFragment.appendChild(newEle);
+
+      //add the br, or p, or something else
+      newEle = document.createElement('br');
+      docFragment.appendChild(newEle);
+
+      //make the br replace selection
+      let range = window.getSelection().getRangeAt(0);
+      range.deleteContents();
+      range.insertNode(docFragment);
+
+      //create a new range
+      range = document.createRange();
+      range.setStartAfter(newEle);
+      range.collapse(true);
+
+      //make the cursor there
+      let sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      return false;
+    }
   }
 
   render() {
     return (
       <>
-        <Toolbar addtionalButton={this.addtionalButton}></Toolbar>
+        <Toolbar text={this.state.editorText} addtionalButton={this.addtionalButton}></Toolbar>
         <div className='tuva-container'>
-          <Editor onEditorChange={this.onEditorChange} cb={this.cb}></Editor>
+          <Editor onKeyDown={this.onKeyDown} onEditorChange={this.onEditorChange} cb={this.cb}></Editor>
           <Preview htmlContent={this.state.content}></Preview>
         </div>
       </>

@@ -9,24 +9,49 @@ export default class Toolbar extends Component {
     super(props)
 
     let buttonOption;
-    if (Array.isArray(props.data)) {
+    if (Array.isArray(props.addtionalButton)) {
       buttonOption = { buttons: [...buttons, ...this.props.addtionalButton] }
     } else {
       buttonOption = { buttons }
     }
     let buttonDisable = getValueFromObj(buttonOption.buttons)
-    this.state = { buttons: buttonOption.buttons,buttonDisable: buttonDisable }
+    this.state = { buttons: buttonOption.buttons, buttonDisable: buttonDisable }
+  }
+
+  componentWillReceiveProps = (props) => {
+    this.isToolbarActiveByKeys()
   }
 
   toolbarButtonClicked = (e) => {
-    let {buttonDisable} = this.state;
+    let { buttonDisable } = this.state;
     let triggeredButton = this.state.buttons.find(obj => obj.type === e.currentTarget.dataset.name);
     buttonDisable[triggeredButton.type] = !buttonDisable[triggeredButton.type]
-    console.log(triggeredButton)
     this.setState({
       buttonDisable
     })
     triggeredButton.execCommand()
+  }
+
+  isToolbarActiveByKeys = () => {
+    let { buttonDisable } = this.state;
+    let status = buttonDisable;
+    for (let item in buttonDisable) {
+      let state = document.queryCommandState(item);
+      switch (state) {
+        case true:
+          status[item] = true
+          break;
+        case false:
+          status[item] = false
+          break;
+        default:
+          console.error("error accured : Command state updating error");
+          break;
+      }
+      this.setState({
+        buttonDisable: status,
+      })
+    }
   }
 
 
