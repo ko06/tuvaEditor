@@ -12,9 +12,9 @@ class TuvaEditor extends Component {
     this.addtionalButton = []
     if (config) {
       if (config.addtionalButton) {
-        this.addtionalButton = this.props.addtionalButton
-      } if(config['tuvaWillUpdate']){
-        this.cb=config['tuvaWillUpdate']
+        this.addtionalButton = config.addtionalButton
+      } if (config['tuvaWillUpdate']) {
+        this.cb = config['tuvaWillUpdate']
       }
     }
   }

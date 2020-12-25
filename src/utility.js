@@ -1,6 +1,6 @@
 import { insertBold, insertItalic, insertUnorderedList, insertStrikeThrough } from '../src/core/browserAPI'
 
-export function tuvaEditor(text,cb) {
+export function tuvaEditor(text,cb = (text) =>  text) {
   let paragraph_rejax = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
   text = '\n' + text + '\n'; // to check end of line
   text = text.replace(paragraph_rejax, function (all, content) { return `<p>${content}</p>` });

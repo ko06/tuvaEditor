@@ -9,7 +9,7 @@ export default class Toolbar extends Component {
     super(props)
 
     let buttonOption;
-    if (Array.isArray(props.data)) {
+    if (Array.isArray(props.addtionalButton)) {
       buttonOption = { buttons: [...buttons, ...this.props.addtionalButton] }
     } else {
       buttonOption = { buttons }

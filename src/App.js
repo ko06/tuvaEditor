@@ -21,7 +21,9 @@ class App extends Component {
   }
 
   customiseHRbutton = () => {
+    // customize option option for HR
     console.log('I got call back')
+    document.execCommand('insertHorizontalRule', false, null)
   }
 
   enableCustomFooter = (text) => {
