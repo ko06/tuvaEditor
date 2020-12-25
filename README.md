@@ -2,6 +2,9 @@
 
 This project deployed in heroku server, check it [here](https://peaceful-citadel-06458.herokuapp.com/)
 
+here gif ![Uploading Screen-Recording-2020-12-25-at-1.gif…]()
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Install node and yarn into your machine
