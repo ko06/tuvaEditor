@@ -26,12 +26,46 @@ class TuvaEditor extends Component {
     })
   }
 
+
+  onKeyDown = (e) => {
+    if (e.keyCode === 13) {
+     // prevent the default behaviour of return key pressed
+    //  document.execCommand('insertLineBreak')
+     e.preventDefault()
+     let docFragment = document.createDocumentFragment();
+
+    //add a new line
+    let newEle = document.createTextNode('\n');
+    docFragment.appendChild(newEle);
+
+    //add the br, or p, or something else
+    newEle = document.createElement('br');
+    docFragment.appendChild(newEle);
+
+    //make the br replace selection
+    let range = window.getSelection().getRangeAt(0);
+    range.deleteContents();
+    range.insertNode(docFragment);
+
+    //create a new range
+    range = document.createRange();
+    range.setStartAfter(newEle);
+    range.collapse(true);
+
+    //make the cursor there
+    let sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    return false;
+    }
+  }
+
   render() {
     return (
       <>
         <Toolbar text={this.state.editorText} addtionalButton={this.addtionalButton}></Toolbar>
         <div className='tuva-container'>
-          <Editor onEditorChange={this.onEditorChange} cb={this.cb}></Editor>
+          <Editor onKeyDown={this.onKeyDown} onEditorChange={this.onEditorChange} cb={this.cb}></Editor>
           <Preview htmlContent={this.state.content}></Preview>
         </div>
       </>
