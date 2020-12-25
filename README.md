@@ -77,5 +77,5 @@ enableCustomFooter = (text) => {
   }
 ```
 
-above is added a customized string to original value.
+above example illustrated how to add a customized string to original value.
 
