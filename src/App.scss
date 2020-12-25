@@ -1,4 +1,5 @@
 // variable
+$tuva-primary: #49afbc;
 $primary-border: #eee;
 $sm-padding: 15px;
 $lg-padding: 20px;
@@ -76,6 +77,11 @@ $lg-padding: 20px;
   button {
     &:hover {
       cursor: pointer;
+    }
+    &.active {
+      path {
+        fill: $tuva-primary;
+      }
     }
 
     svg {
