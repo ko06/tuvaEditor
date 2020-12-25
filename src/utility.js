@@ -1,11 +1,20 @@
-import { insertBold, insertItalic, insertUnorderedList, insertStrikeThrough } from '../src/core/browserAPI'
+import { insertBold, insertItalic, insertUnorderedList, insertStrikeThrough } from './core/BrowserAPI'
+import { tuvaMarkdown } from './core/MarkdownAPI'
 
-export function tuvaEditor(text,cb = (text) =>  text) {
-  let paragraph_rejax = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
-  text = '\n' + text + '\n'; // to check end of line
-  text = text.replace(paragraph_rejax, function (all, content) { return `<p>${content}</p>` });
-  text = isbold(text)
-  text= cb(text)
+export function tuvaEditor(text, cb = (text) => text) {
+  // let paragraph_rejax = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
+  // text = '\n' + text + '\n'; // to check end of line
+  // text = text.replace(paragraph_rejax, function (all, content) { return `<p>${content}</p>` });
+  // text = isbold(text)
+
+  if (text) {
+    // for own markup logics
+    text = tuvaMarkdown(text)
+
+    // for user perspective
+    text = cb(text)
+  }
+
   return text.trim();
 };
 
@@ -44,7 +53,7 @@ export const buttons = [{
   },
 },
 {
-  type: 'unorderlist',
+  type: 'insertUnorderedList',
   svgIcon: <svg data-name="unordered-list" width="12" height="12" viewBox="0 0 512 512"><path fill="currentColor" d="M96 96c0 26.51-21.49 48-48 48S0 122.51 0 96s21.49-48 48-48 48 21.49 48 48zM48 208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm0 160c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm96-236h352c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h352c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H144c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>,
   execCommand: function excuteCommand() {
     insertUnorderedList()
