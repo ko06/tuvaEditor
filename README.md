@@ -78,9 +78,29 @@ You can use following comments to Editor
 
 `--- || ==  for </hr> tag`
 
-### code
+### inline code
 
 \`code\`
+
+### code block
+
+\`\`\`language-js
+   console.log('hellow world);
+\`\`\`
+here language-js changed to class name
+
+### order List
+
+1. Hulk
+2. Bat man
+3. Iron man
+4. X-men`
+
+### unorder List
+ * Hulk 
+ * Bat man
+ * Iron man
+ * X-men
 
 
 ### `Config Option for Plugin`
