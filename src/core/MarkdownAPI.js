@@ -8,6 +8,14 @@ export function tuvaMarkdown(src) {
   src = checkAtag(src)
   src = checkHRrule(src)
   src = checkCodeBlock(src)
+  src = checkPre(src)
+  src = checkUnordertList(src)
+  src = checkOrdertList(src)
+
+  // defualt p tag to avoid empty string
+  src= src.replace(/^\s*(\n)?(.+)/gm, function(m){
+      return  /\<(\/)?(h\d|ul|ol|li|blockquote|pre|img)/.test(m) ? m : '<p>'+m+'</p>';
+    });
   return src;
 }
 
@@ -41,9 +49,32 @@ export function checkHeader(src) {
 }
 
 export function checkBlockquote(src) {
-  return src.replace( /\n(&gt;|\>)(.*)/g , '\n<blockquote>$1</blockquote>')
+  return src.replace(/^\>(.+)/gm, '<blockquote>$1</blockquote>');
 }
 
-export function checkCodeBlock(src){
+export function checkCodeBlock(src) {
   return src.replace(/`([^`]+)`/g, '\n<code>$1</code>');
+}
+
+export function checkUnordertList(src) {
+  //ul
+  src = src.replace(/^\s*\n\*/gm, '<ul>\n*');
+  src = src.replace(/^(\*.+)\s*\n([^\*])/gm, '$1\n</ul>\n\n$2');
+  src = src.replace(/^\*(.+)/gm, '<li>$1</li>');
+  return src
+}
+
+export function checkOrdertList(src) {
+  //ol
+  src = src.replace(/^\s*\n\d\./gm, '<ol>\n1.');
+  src = src.replace(/^(\d\..+)\s*\n([^\d\.])/gm, '$1\n</ol>\n\n$2');
+  src = src.replace(/^\d\.(.+)/gm, '<li>$1</li>');
+  return src;
+} 
+
+export function checkPre(src) {
+   //pre
+   src = src.replace(/^\s*\n\`\`\`(([^\s]+))?/gm, '<pre class="$2">');
+   src = src.replace(/^\`\`\`\s*\n/gm, '</pre>\n\n');
+   return src;
 }

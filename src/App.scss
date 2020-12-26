@@ -65,6 +65,7 @@ $lg-padding: 20px;
   width: calc(100% - #{2 * $lg-padding});
   height: 100%;
   display:inline-block;
+  white-space: pre-wrap;
   &:focus {
     outline: none;
   }

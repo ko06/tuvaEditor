@@ -29,47 +29,34 @@ class TuvaEditor extends Component {
 
   onKeyDown = (e) => {
     if (e.keyCode === 13) {
-      // prevent the default behaviour of return key pressed
-      e.preventDefault()
-      let docFragment = document.createDocumentFragment();
+      e.stopPropagation();
+      e.preventDefault();
 
-      //add a new line
-      let newEle = document.createTextNode('\n');
-      docFragment.appendChild(newEle);
+      let selection = window.getSelection(),
+        range = selection.getRangeAt(0),
+        newline = document.createTextNode('\n');
 
-      //add the br, or p, or something else
-      newEle = document.createElement('br');
-      docFragment.appendChild(newEle);
-
-      //make the br replace selection
-      let range = window.getSelection().getRangeAt(0);
       range.deleteContents();
-      range.insertNode(docFragment);
-
-      //create a new range
-      range = document.createRange();
-      range.setStartAfter(newEle);
-      range.collapse(true);
-
-      //make the cursor there
-      let sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-      return false;
-    }
+      range.insertNode(newline);
+      range.setStartAfter(newline);
+      range.setEndAfter(newline);
+      range.collapse(false);
+      selection.removeAllRanges();
+      selection.addRange(range);
   }
+}
 
-  render() {
-    return (
-      <>
-        <Toolbar text={this.state.editorText} addtionalButton={this.addtionalButton}></Toolbar>
-        <div className='tuva-container'>
-          <Editor onKeyDown={this.onKeyDown} onEditorChange={this.onEditorChange} cb={this.cb}></Editor>
-          <Preview htmlContent={this.state.content}></Preview>
-        </div>
-      </>
-    );
-  }
+render() {
+  return (
+    <>
+      <Toolbar text={this.state.editorText} addtionalButton={this.addtionalButton}></Toolbar>
+      <div className='tuva-container'>
+        <Editor onKeyDown={this.onKeyDown} onEditorChange={this.onEditorChange} cb={this.cb}></Editor>
+        <Preview htmlContent={this.state.content}></Preview>
+      </div>
+    </>
+  );
+}
 }
 
 TuvaEditor.defaultProps = { config: [] }

@@ -33,6 +33,54 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### Documentation
+
+You can use following comments to Editor
+
+### bold 
+`**bold**`
+
+### Italic 
+`*Italic*`
+
+### h1
+`# h1`
+
+### h2
+
+`## h2`
+
+### h3
+
+`### h3`
+
+### h4
+
+`#### h4`
+
+### h5
+
+`##### h5`
+
+### h6
+
+`###### h6`
+
+### image
+
+`![alt-text](www.myimage.com)`
+
+### link tag
+
+`[google](www.goole.com)`
+
+### hr tag
+
+`--- || ==  for </hr> tag`
+
+### code
+
+\`code\`
 
 
 ### `Config Option for Plugin`
