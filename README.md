@@ -36,6 +36,74 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### Documentation
+
+You can use following comments to Editor
+
+### bold 
+`**bold**`
+
+### Italic 
+`*Italic*`
+
+### h1
+`# h1`
+
+### h2
+
+`## h2`
+
+### h3
+
+`### h3`
+
+### h4
+
+`#### h4`
+
+### h5
+
+`##### h5`
+
+### h6
+
+`###### h6`
+
+### image
+
+`![alt-text](www.myimage.com)`
+
+### link tag
+
+`[google](www.goole.com)`
+
+### hr tag
+
+`--- || ==  for </hr> tag`
+
+### inline code
+
+\`code\`
+
+### code block
+
+\`\`\`language-js
+   console.log('hellow world);
+\`\`\`
+here language-js changed to class name
+
+### order List
+
+1. Hulk
+2. Bat man
+3. Iron man
+4. X-men`
+
+### unorder List
+ * Hulk 
+ * Bat man
+ * Iron man
+ * X-men
 
 
 ### `Config Option for Plugin`
@@ -80,5 +148,5 @@ enableCustomFooter = (text) => {
   }
 ```
 
-above is added a customized string to original value.
+above example illustrated how to add a customized string to original value.
 

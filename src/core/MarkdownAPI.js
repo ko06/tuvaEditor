@@ -3,16 +3,22 @@ export function tuvaMarkdown(src) {
   src = checkItalic(src)
   src = checkHeader(src)
   src = checkAtag(src)
-  src = checkBlockquote(src)
-  src = checkAtag(src)
+  // src = checkBlockquote(src)
   src = checkHRrule(src)
+  src = checkPre(src)
+  src = checkCodeBlock(src)
+  src = checkUnordertList(src)
+  src = checkOrdertList(src)
 
+  // defualt p tag to avoid empty string
+  src= src.replace(/^\s*(\n)?(.+)/gm, function(m){
+      return  /\<(\/)?(h\d|ul|ol|li|blockquote|pre|img)/.test(m) ? m : '<p>'+m+'</p>';
+    });
   return src;
 }
 
 export function checkHRrule(src) {
-  return src
-  //.replace(/^([*\-=_] *){3,}$/gm, '<hr/>')
+  return src.replace(/\n((\-{3,})|(={3,}))/g, "\n<hr/>")
 }
 
 export function checkImage(src) {
@@ -32,11 +38,38 @@ export function checkAtag(src) {
 }
 
 export function checkHeader(src) {
-  return src.replace(/^### (.*$)/gim, '<h3>$1</h3>')
-    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+  return src.replace(/^###### (.*$)/gim, '\n<h6>$1</h6>')
+    .replace(/^##### (.*$)/gim, '\n<h5>$1</h5>')
+    .replace(/^#### (.*$)/gim, '\n<h4>$1</h4>')
+    .replace(/^### (.*$)/gim, '\n<h3>$1</h3>')
+    .replace(/^## (.*$)/gim, '\n<h2>$1</h2>')
+    .replace(/^# (.*$)/gim, '\n<h1>$1</h1>')
 }
 
 export function checkBlockquote(src) {
-  return src.replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
+  return src.replace(/^\>(.+)/gm, '<blockquote>$1</blockquote>');
+}
+
+export function checkCodeBlock(src) {
+  return src.replace(/[\`]{1}([^\`]+)[\`]{1}/g, '\n<code>$1</code>');
+}
+
+export function checkUnordertList(src) {
+  src = src.replace(/^\s*\n\*/gm, '<ul>\n*');
+  src = src.replace(/^(\*.+)\s*\n([^\*])/gm, '$1\n</ul>\n\n$2');
+  src = src.replace(/^\*(.+)/gm, '<li>$1</li>');
+  return src
+}
+
+export function checkOrdertList(src) {
+  src = src.replace(/^\s*\n\d\./gm, '<ol>\n1.');
+  src = src.replace(/^(\d\..+)\s*\n([^\d\.])/gm, '$1\n</ol>\n\n$2');
+  src = src.replace(/^\d\.(.+)/gm, '<li>$1</li>');
+  return src;
+} 
+
+export function checkPre(src) {
+   src = src.replace(/^\s*\n\`\`\`(([^\s]+))?/gm, '<pre class="$2">');
+   src = src.replace(/^\`\`\`\s*\n/gm, '</pre>\n\n');
+   return src;
 }
