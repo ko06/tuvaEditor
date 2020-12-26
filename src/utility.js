@@ -1,5 +1,5 @@
-import { insertBold, insertItalic, insertUnorderedList, insertStrikeThrough } from '../src/core/BrowserAPI'
-import { tuvaMarkdown } from '../src/core/MarkdownAPI'
+import { insertBold, insertItalic, insertUnorderedList, insertStrikeThrough } from './core/BrowserAPI'
+import { tuvaMarkdown } from './core/MarkdownAPI'
 
 export function tuvaEditor(text, cb = (text) => text) {
   // let paragraph_rejax = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
