@@ -147,3 +147,9 @@ enableCustomFooter = (text) => {
 
 above example illustrated how to add a customized string to original value.
 
+you have to pass the `config` to Editor component 
+
+```
+<TuvaEditor config={this.config}></TuvaEditor>
+```
+
