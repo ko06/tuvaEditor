@@ -1,17 +1,13 @@
-import { insertBold, insertItalic, insertUnorderedList, insertStrikeThrough } from './core/BrowserAPI'
+import { insertBold, insertItalic, insertUnorderedList, insertStrikeThrough } from './core/browserAPI'
 import { tuvaMarkdown } from './core/MarkdownAPI'
 
 export function tuvaEditor(text, cb = (text) => text) {
-  // let paragraph_rejax = /(?=^|>|\n)\s*\n+([^<]+?)\n+\s*(?=\n|<|$)/g;
-  // text = '\n' + text + '\n'; // to check end of line
-  // text = text.replace(paragraph_rejax, function (all, content) { return `<p>${content}</p>` });
-  // text = isbold(text)
 
   if (text) {
     // for own markup logics
     text = tuvaMarkdown(text)
 
-    // for user perspective
+    // for user perspective call back from config
     text = cb(text)
   }
 

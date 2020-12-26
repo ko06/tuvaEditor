@@ -1,4 +1,6 @@
 export function tuvaMarkdown(src) {
+
+  // I have spited every function so we can easily wrote unite test cases
   src = checkBold(src)
   src = checkItalic(src)
   src = checkHeader(src)
@@ -10,7 +12,7 @@ export function tuvaMarkdown(src) {
   src = checkUnordertList(src)
   src = checkOrdertList(src)
 
-  // defualt p tag to avoid empty string
+  // default p tag to avoid empty string
   src= src.replace(/^\s*(\n)?(.+)/gm, function(m){
       return  /\<(\/)?(h\d|ul|ol|li|blockquote|pre|img)/.test(m) ? m : '<p>'+m+'</p>';
     });
