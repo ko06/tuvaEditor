@@ -2,7 +2,9 @@ import { Component } from 'react';
 import Editor from './Editor';
 import Preview from './Preview';
 import Toolbar from './Toolbar';
-import { tuvaEditor } from '../utility'
+import { tuvaEditor } from '../utility';
+import PropTypes from 'prop-types';
+
 
 class TuvaEditor extends Component {
   constructor(props) {
@@ -59,7 +61,9 @@ render() {
 }
 }
 
-TuvaEditor.defaultProps = { config: [] }
+TuvaEditor.defaultProps = { config: {} }
 
-
+TuvaEditor.propTypes = {
+  config: PropTypes.object,
+};
 export default TuvaEditor;
